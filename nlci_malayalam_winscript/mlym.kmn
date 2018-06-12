@@ -1,0 +1,379 @@
+VERSION 5.0 C  This keyboard will work with Keyman 5.0
+NAME "WINSMALU 1.00"
+BITMAP "mlym.bmp"
+HOTKEY "^+M"
+message "Malayalam Phonetic Keyboard"
+
+CAPS ALWAYS OFF
+
+begin UNICODE > use(main)
+group (main) using keys
++ '=' > deadkey(1)
++ 'x' > deadkey(2)
++ 'X' > deadkey(3)
++ '`' > deadkey(4)
++ 'f' > nul
++ 'H' > nul
++ 'S' > nul
+
+
+store (vowel)      'a'    'i'    'u'    'R'    '|'           'E'           'O' \
+                   'A'    'I'    'U'    '^'    '_'    'e'    'Y'    'o'    'V'
+store (vowelU)   U+0D05 U+0D07 U+0D09 U+0D0B U+0D0C        U+0D0F        U+0D13 \
+                 U+0D06 U+0D08 U+0D0A U+0D60 U+0D61 U+0D0E U+0D10 U+0D12 U+0D14
+store (vowsignU) U+200D U+0D3F U+0D41 U+0D43 U+200D        U+0D47        U+0D4B \
+                 U+0D3E U+0D40 U+0D42 U+200D U+200D U+0D46 U+0D48 U+0D4A U+0D4C
+
+store (consonant)    'k'    'g'    'W'    'c'    'j'     'w'    't'    'd'    'N'    'q'    '['    'n'    'p'    'b'    'm'    'y'    'l'    'v'    'z'    's' \
+                     'K'    'G'           'C'    'J'            'T'    'D'           'Q'    '{'           'P'    'B'           'r'    'L'           'Z'    'h'
+store (consonantU) U+0D15 U+0D17 U+0D19 U+0D1A  U+0D1C U+0D1E U+0D1F U+0D21 U+0D23 U+0D24 U+0D26 U+0D28 U+0D2A U+0D2C U+0D2E U+0D2F U+0D32 U+0D35 U+0D36 U+0D38 \
+                   U+0D16 U+0D18        U+0D1B  U+0D1D        U+0D20 U+0D22        U+0D25 U+0D27        U+0D2B U+0D2D        U+0D30 U+0D33        U+0D37 U+0D39
+
+store (special)      'r'    'L'
+store (specialU)   U+0D31 U+0D34
+
+store (diacriticalmod)  'M' 'H'
+store (diacriticalmodU) U+0D02 U+0D03
+
+store (different) 'F' 'S'
+
+store (Number)      '0'    '1'    '2'    '3'    '4'    '5'    '6'    '7'    '8'    '9'
+store (Malayalam) U+0D66 U+0D67 U+0D68 U+0D69 U+0D6A U+0D6B U+0D6C U+0D6D U+0D6E U+0D6F
+
++ any(vowel) > index(vowelU,1)
++ any(consonant) > index(consonantU,1)
+dk(1) + any(special) > index(specialU,2)
++ any(diacriticalmod) > index(diacriticalmodU,1)
++ any(different) > beep
+dk(4) + any(Number) > index(Malayalam,2)
+
+any (consonantU) + any(vowel) > context index(vowsignU,2)
+any (consonantU) + any(diacriticalmod) > context index(diacriticalmodU,2)
+any (consonantU) any(vowsignU) + any(diacriticalmod) > context index(diacriticalmodU,3)
+
+any (consonantU) + 'x'  > context U+0D4D U+200D
+U+0D15 U+0D4D U+200D + 'k' > U+0D15 U+0D4D U+0D15
+U+0D15 U+0D4D U+200D + 't' > U+0D15 U+0D4D U+0D1F
+U+0D15 U+0D4D U+200D + 'q' > U+0D15 U+0D4D U+0D24
+U+0D15 U+0D4D U+200D + 'l' > U+0D15 U+0D4D U+0D32
+U+0D15 U+0D4D U+200D + 'Z' > U+0D15 U+0D4D U+0D37
+
+U+0D17 U+0D4D U+200D + 'g' > U+0D17 U+0D4D U+0D17
+U+0D17 U+0D4D U+200D + 'n' > U+0D17 U+0D4D U+0D28
+U+0D17 U+0D4D U+200D + 'm' > U+0D17 U+0D4D U+0D2E
+U+0D17 U+0D4D U+200D + 'l' > U+0D17 U+0D4D U+0D32
+
+U+0D19 U+0D4D U+200D + 'W' > U+0D19 U+0D4D U+0D19
+
+U+0D1A U+0D4D U+200D + 'c' > U+0D1A U+0D4D U+0D1A
+U+0D1A U+0D4D U+200D + 'C' > U+0D1A U+0D4D U+0D1B
+
+U+0D1C U+0D4D U+200D + 'j' > U+0D1C U+0D4D U+0D1C
+U+0D1C U+0D4D U+200D + 'w' > U+0D1C U+0D4D U+0D1E
+
+U+0D1E U+0D4D U+200D + 'c' > U+0D1E U+0D4D U+0D1A
+U+0D1E U+0D4D U+200D + 'w' > U+0D1E U+0D4D U+0D1E
+
+U+0D1F U+0D4D U+200D + 't' > U+0D1F U+0D4D U+0D1F
+
+U+0D21 U+0D4D U+200D + 'd' > U+0D21 U+0D4D U+0D21
+
+U+0D23 U+0D4D U+200D + 't' > U+0D23 U+0D4D U+0D1F
+U+0D23 U+0D4D U+200D + 'd' > U+0D23 U+0D4D U+0D21
+U+0D23 U+0D4D U+200D + 'N' > U+0D23 U+0D4D U+0D23
+U+0D23 U+0D4D U+200D + 'm' > U+0D23 U+0D4D U+0D2E
+
+U+0D24 U+0D4D U+200D + 'q' > U+0D24 U+0D4D U+0D24
+U+0D24 U+0D4D U+200D + 'Q' > U+0D24 U+0D4D U+0D25
+U+0D24 U+0D4D U+200D + 'B' > U+0D24 U+0D4D U+0D2D
+U+0D24 U+0D4D U+200D + 'm' > U+0D24 U+0D4D U+0D2E
+U+0D24 U+0D4D U+200D + 's' > U+0D24 U+0D4D U+0D38
+
+U+0D26 U+0D4D U+200D + '[' > U+0D26 U+0D4D U+0D26
+U+0D26 U+0D4D U+200D + '{' > U+0D26 U+0D4D U+0D27
+
+U+0D28 U+0D4D U+200D + 'k' > U+0D28 U+0D4D U+0D15
+U+0D28 U+0D4D U+200D + 'q' > U+0D28 U+0D4D U+0D24
+U+0D28 U+0D4D U+200D + 'Q' > U+0D28 U+0D4D U+0D25
+U+0D28 U+0D4D U+200D + '[' > U+0D28 U+0D4D U+0D26
+U+0D28 U+0D4D U+200D + '{' > U+0D28 U+0D4D U+0D27
+U+0D28 U+0D4D U+200D + 'n' > U+0D28 U+0D4D U+0D28
+U+0D28 U+0D4D U+200D + 'p' > U+0D28 U+0D4D U+0D2A
+U+0D28 U+0D4D U+200D + 'm' > U+0D28 U+0D4D U+0D2E
+
+U+0D2A U+0D4D U+200D + 'p' > U+0D2A U+0D4D U+0D2A
+U+0D2A U+0D4D U+200D + 'l' > U+0D2A U+0D4D U+0D32
+
+U+0D2C U+0D4D U+200D + '[' > U+0D2C U+0D4D U+0D26
+U+0D2C U+0D4D U+200D + '{' > U+0D2C U+0D4D U+0D27
+U+0D2C U+0D4D U+200D + 'b' > U+0D2C U+0D4D U+0D2C
+U+0D2C U+0D4D U+200D + 'L' > U+0D2C U+0D4D U+0D33
+
+U+0D2E U+0D4D U+200D + 'm' > U+0D2E U+0D4D U+0D2E
+U+0D2E U+0D4D U+200D + 'L' > U+0D2E U+0D4D U+0D33
+
+U+0D2F U+0D4D U+200D + 'y' > U+0D2F U+0D4D U+0D2F
+
+U+0D32 U+0D4D U+200D + 'l' > U+0D32 U+0D4D U+0D32
+U+0D33 U+0D4D U+200D + 'L' > U+0D33 U+0D4D U+0D33
+
+U+0D35 U+0D4D U+200D + 'v' > U+0D35 U+0D4D U+0D35
+
+U+0D36 U+0D4D U+200D + 'c' > U+0D36 U+0D4D U+0D1A
+U+0D36 U+0D4D U+200D + 'l' > U+0D36 U+0D4D U+0D32
+U+0D36 U+0D4D U+200D + 'z' > U+0D36 U+0D4D U+0D36
+
+U+0D37 U+0D4D U+200D + 't' > U+0D37 U+0D4D U+0D1F
+
+U+0D38 U+0D4D U+200D + 'd' > U+0D38 U+0D4D U+0D21
+U+0D38 U+0D4D U+200D + 'Q' > U+0D38 U+0D4D U+0D25
+U+0D38 U+0D4D U+200D + 'l' > U+0D38 U+0D4D U+0D32
+U+0D38 U+0D4D U+200D + 's' > U+0D38 U+0D4D U+0D38
+
+U+0D39 U+0D4D U+200D + 'n' > U+0D39 U+0D4D U+0D28
+U+0D39 U+0D4D U+200D + 'm' > U+0D39 U+0D4D U+0D2E
+U+0D39 U+0D4D U+200D + 'l' > U+0D39 U+0D4D U+0D32
+
+any (consonantU) U+0D4D U+200D + 'y'  > index(consonantU,1) U+0D4D U+0D2F
+any (consonantU) U+0D4D U+200D + 'r'  > index(consonantU,1) U+0D4D U+0D30
+any (consonantU) U+0D4D U+200D + 'v'  > index(consonantU,1) U+0D4D U+0D35
+
+any (consonantU) U+0D4D U+200D + 'x' > index(consonantU,1) U+0D4D U+200C
+
+any (consonantU) U+0D4D U+200C + 'x' > index(consonantU,1) U+0D4D
+any (consonantU) + 'X' > index(consonantU,1) U+0D4D
+U+0D15 U+0D4D + 'k' > U+0D15 U+0D4D U+200D U+0D15
+U+0D15 U+0D4D + 't' > U+0D15 U+0D4D U+200D U+0D1F
+U+0D15 U+0D4D + 'q' > U+0D15 U+0D4D U+200D U+0D24
+U+0D15 U+0D4D + 'l' > U+0D15 U+0D4D U+200D U+0D32
+U+0D15 U+0D4D + 'Z' > U+0D15 U+0D4D U+200D U+0D37
+
+U+0D17 U+0D4D + 'g' > U+0D17 U+0D4D U+200D U+0D17
+U+0D17 U+0D4D + 'n' > U+0D17 U+0D4D U+200D U+0D28
+U+0D17 U+0D4D + 'm' > U+0D17 U+0D4D U+200D U+0D2E
+U+0D17 U+0D4D + 'l' > U+0D17 U+0D4D U+200D U+0D32
+
+U+0D19 U+0D4D + 'W' > U+0D19 U+0D4D U+200D U+0D19
+
+U+0D1A U+0D4D + 'c' > U+0D1A U+0D4D U+200D U+0D1A
+U+0D1A U+0D4D + 'C' > U+0D1A U+0D4D U+200D U+0D1B
+
+U+0D1C U+0D4D + 'j' > U+0D1C U+0D4D U+200D U+0D1C
+U+0D1C U+0D4D + 'w' > U+0D1C U+0D4D U+200D U+0D1E
+
+U+0D1E U+0D4D + 'c' > U+0D1E U+0D4D U+200D U+0D1A
+U+0D1E U+0D4D + 'w' > U+0D1E U+0D4D U+200D U+0D1E
+
+U+0D1F U+0D4D + 't' > U+0D1F U+0D4D U+200D U+0D1F
+
+U+0D21 U+0D4D + 'd' > U+0D21 U+0D4D U+200D U+0D21
+
+U+0D23 U+0D4D + 't' > U+0D23 U+0D4D U+200D U+0D1F
+U+0D23 U+0D4D + 'd' > U+0D23 U+0D4D U+200D U+0D21
+U+0D23 U+0D4D + 'N' > U+0D23 U+0D4D U+200D U+0D23
+U+0D23 U+0D4D + 'm' > U+0D23 U+0D4D U+200D U+0D2E
+
+U+0D24 U+0D4D + 'q' > U+0D24 U+0D4D U+200D U+0D24
+U+0D24 U+0D4D + 'Q' > U+0D24 U+0D4D U+200D U+0D25
+U+0D24 U+0D4D + 'B' > U+0D24 U+0D4D U+200D U+0D2D
+U+0D24 U+0D4D + 'm' > U+0D24 U+0D4D U+200D U+0D2E
+U+0D24 U+0D4D + 's' > U+0D24 U+0D4D U+200D U+0D38
+
+U+0D26 U+0D4D + '[' > U+0D26 U+0D4D U+200D U+0D26
+U+0D26 U+0D4D + '{' > U+0D26 U+0D4D U+200D U+0D27
+
+U+0D28 U+0D4D + 'k' > U+0D28 U+0D4D U+200D U+0D15
+U+0D28 U+0D4D + 'q' > U+0D28 U+0D4D U+200D U+0D24
+U+0D28 U+0D4D + 'Q' > U+0D28 U+0D4D U+200D U+0D25
+U+0D28 U+0D4D + '[' > U+0D28 U+0D4D U+200D U+0D26
+U+0D28 U+0D4D + '{' > U+0D28 U+0D4D U+200D U+0D27
+U+0D28 U+0D4D + 'n' > U+0D28 U+0D4D U+200D U+0D28
+U+0D28 U+0D4D + 'p' > U+0D28 U+0D4D U+200D U+0D2A
+U+0D28 U+0D4D + 'm' > U+0D28 U+0D4D U+200D U+0D2E
+
+U+0D2A U+0D4D + 'p' > U+0D2A U+0D4D U+200D U+0D2A
+U+0D2A U+0D4D + 'l' > U+0D2A U+0D4D U+200D U+0D32
+
+U+0D2C U+0D4D + '[' > U+0D2C U+0D4D U+200D U+0D26
+U+0D2C U+0D4D + '{' > U+0D2C U+0D4D U+200D U+0D27
+U+0D2C U+0D4D + 'b' > U+0D2C U+0D4D U+200D U+0D2C
+U+0D2C U+0D4D + 'l' > U+0D2C U+0D4D U+200D U+0D32
+
+U+0D2E U+0D4D + 'm' > U+0D2E U+0D4D U+200D U+0D2E
+U+0D2E U+0D4D + 'l' > U+0D2E U+0D4D U+200D U+0D32
+
+U+0D2F U+0D4D + 'y' > U+0D2F U+0D4D U+200D U+0D2F
+
+U+0D32 U+0D4D + 'l' > U+0D32 U+0D4D U+200D U+0D32
+U+0D33 U+0D4D + 'L' > U+0D33 U+0D4D U+200D U+0D33
+
+U+0D35 U+0D4D + 'v' > U+0D35 U+0D4D U+200D U+0D35
+
+U+0D36 U+0D4D + 'c' > U+0D36 U+0D4D U+200D U+0D1A
+U+0D36 U+0D4D + 'l' > U+0D36 U+0D4D U+200D U+0D32
+U+0D36 U+0D4D + 'z' > U+0D36 U+0D4D U+200D U+0D36
+
+U+0D37 U+0D4D + 't' > U+0D37 U+0D4D U+200D U+0D1F
+
+U+0D38 U+0D4D + 'd' > U+0D38 U+0D4D U+200D U+0D21
+U+0D38 U+0D4D + 'Q' > U+0D38 U+0D4D U+200D U+0D25
+U+0D38 U+0D4D + 'l' > U+0D38 U+0D4D U+200D U+0D32
+U+0D38 U+0D4D + 's' > U+0D38 U+0D4D U+200D U+0D38
+
+U+0D39 U+0D4D + 'n' > U+0D39 U+0D4D U+200D U+0D28
+U+0D39 U+0D4D + 'm' > U+0D39 U+0D4D U+200D U+0D2E
+U+0D39 U+0D4D + 'l' > U+0D39 U+0D4D U+200D U+0D32
+
+any (consonantU) U+0D4D + 'y' > index(consonantU,1) U+0D4D U+200D U+0D2F
+any (consonantU) U+0D4D + 'r' > index(consonantU,1) U+0D4D U+200D U+0D30
+any (consonantU) U+0D4D + 'v' > index(consonantU,1) U+0D4D U+200D U+0D35
+
+any (consonantU) U+0D4D U+0D30 + 'x' > context U+200C
+any (consonantU) U+0D4D U+0D30 U+200C + 'x' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+200C
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'k' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D15
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'K' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D16
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'g' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D17
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'G' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D18
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'W' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D19
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'c' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1A
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'C' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1B
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'j' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1C
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'J' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1D
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'w' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1E
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 't' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D1F
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'T' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D20
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'd' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D21
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'D' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D22
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'N' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D23
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'q' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D24
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'Q' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D25
+any ( consonantU ) U+0D4D U+0D30 U+200C + '[' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D26
+any ( consonantU ) U+0D4D U+0D30 U+200C + '{' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D27
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'n' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D28
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'p' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2A
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'P' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2B
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'b' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2C
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'B' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2D
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'm' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2E
+
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'y' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D2F
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'r' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D30
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'l' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D32
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'L' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D33
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'v' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D35
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'z' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D36
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'Z' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D37
+any ( consonantU ) U+0D4D U+0D30 U+200C + 's' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D38
+any ( consonantU ) U+0D4D U+0D30 U+200C + 'h' > index(consonantU,1) U+0D4D U+0D30 U+0D4D U+0D39
+
+any (specialU) + any(vowel) > context index(vowsignU,2)
+any (specialU) + any(diacriticalmod) > context index(diacriticalmodU,2)
+any (specialU) any(vowsignU) + any(diacriticalmod) > context index(diacriticalmodU,3)
+
+any (specialU) + 'x'  > context U+0D4D U+200D
+any (specialU) U+0D4D U+200D + 'x' > index(specialU,1) U+0D4D U+200C
+
+U+0D31 U+0D4D U+200D dk(1) + 'r' > U+0D31 U+0D4D U+0D31
+any (specialU) U+0D4D U+200D + 'y' > index(specialU,1) U+0D4D U+0D2F
+any (specialU) U+0D4D U+200D + 'r' > index(specialU,1) U+0D4D U+0D30
+any (specialU) U+0D4D U+200D + 'v' > index(specialU,1) U+0D4D U+0D35
+
+any (specialU) U+0D4D U+200C + 'x' > index(specialU,1) U+0D4D
+any (specialU) U+0D4D + 'X' > index(specialU,1) U+0D4D
+
+U+0D31 U+0D4D dk(1) + 'r' > U+0D31 U+0D4D U+200D U+0D31
+any (specialU) U+0D4D + 'y' > index(specialU,1) U+0D4D U+200D U+0D2F
+any (specialU) U+0D4D + 'r' > index(specialU,1) U+0D4D U+200D U+0D30
+any (specialU) U+0D4D + 'v' > index(specialU,1) U+0D4D U+200D U+0D35
+
+any (specialU) U+0D4D U+0D30 + 'x' > context U+200C
+any (specialU) U+0D4D U+0D30 U+200C + 'x' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+200C
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 'k' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D15
+any ( specialU ) U+0D4D U+0D30 U+200C + 'K' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D16
+any ( specialU ) U+0D4D U+0D30 U+200C + 'g' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D17
+any ( specialU ) U+0D4D U+0D30 U+200C + 'G' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D18
+any ( specialU ) U+0D4D U+0D30 U+200C + 'W' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D19
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 'c' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1A
+any ( specialU ) U+0D4D U+0D30 U+200C + 'C' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1B
+any ( specialU ) U+0D4D U+0D30 U+200C + 'j' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1C
+any ( specialU ) U+0D4D U+0D30 U+200C + 'J' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1D
+any ( specialU ) U+0D4D U+0D30 U+200C + 'w' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1E
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 't' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D1F
+any ( specialU ) U+0D4D U+0D30 U+200C + 'T' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D20
+any ( specialU ) U+0D4D U+0D30 U+200C + 'd' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D21
+any ( specialU ) U+0D4D U+0D30 U+200C + 'D' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D22
+any ( specialU ) U+0D4D U+0D30 U+200C + 'N' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D23
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 'q' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D24
+any ( specialU ) U+0D4D U+0D30 U+200C + 'Q' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D25
+any ( specialU ) U+0D4D U+0D30 U+200C + '[' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D26
+any ( specialU ) U+0D4D U+0D30 U+200C + '{' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D27
+any ( specialU ) U+0D4D U+0D30 U+200C + 'n' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D28
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 'p' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2A
+any ( specialU ) U+0D4D U+0D30 U+200C + 'P' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2B
+any ( specialU ) U+0D4D U+0D30 U+200C + 'b' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2C
+any ( specialU ) U+0D4D U+0D30 U+200C + 'B' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2D
+any ( specialU ) U+0D4D U+0D30 U+200C + 'm' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2E
+
+any ( specialU ) U+0D4D U+0D30 U+200C + 'y' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D2F
+any ( specialU ) U+0D4D U+0D30 U+200C + 'r' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D30
+any ( specialU ) U+0D4D U+0D30 U+200C + 'l' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D32
+any ( specialU ) U+0D4D U+0D30 U+200C + 'L' > index(specialU,1) U+0D4D U+0D30 U+0D4D U+0D33
+
++ [shift K_5] > U+0D1C U+0D4D U+0D1E
++ [shift K_7] > U+0D15 U+0D4D U+0D37
++ [shift K_8] > U+0D36 U+0D4D U+0D30
++ [shift K_4] > U+0D30 U+0D4D
++ [shift K_3] > U+0D4D U+0D30
+
+dk(1) + '\' > U+0D49
+c Indic Diacritical Marks
+dk(1) + [K_SPACE] > dk(1)" "
+
+dk(1)" " + [SHIFT K_a] > U+0D3E
+dk(1)" " + [K_i] > U+0D3F
+dk(1)" " + [SHIFT K_i] > U+0D40
+dk(1)" " + [K_u] > U+0D41
+dk(1)" " + [SHIFT K_u] > U+0D42
+dk(1)" " + [SHIFT K_r] > U+0D43
+dk(1)" " + [SHIFT K_e] > U+0D46
+dk(1)" " + [K_e] > U+0D47
+dk(1)" " + [SHIFT K_y] > U+0D48
+dk(1)" " + [SHIFT K_o] > U+0D4A
+dk(1)" " + [K_o] > U+0D4B
+dk(1)" " + [SHIFT K_v] > U+0D57
+dk(1)" " + [SHIFT K_m] > U+0D02
+dk(1)" " + [SHIFT K_h] > U+0D03
+dk(1)" " + [K_x] > dk(1)"  "
+dk(1)"  " + [K_x] > U+0D4D
+
+c Punctuation marks
+"'" + "'" > U+201D    c closing double quotes
+'"' + '"' > U+201C    c opening double quotes
+"-" + "-" > "__"        c Drawing line
+"__"+ '-' > "___"       c Drawing line
+
+c Extended Fonts
+any ( consonantU ) + 'X'  > context U+0D4D
+any ( specialU ) + 'X'  > context U+0D4D
+
+any ( consonantU ) U+0D4D U+200C + 'X' > index(consonantU,1) U+0D4D
+any ( specialU ) U+0D4D U+200C + 'X' > index(specialU,1) U+0D4D
+
+any ( consonantU ) U+0D4D U+200C + 'x' > index(consonantU,1) U+0D4D
+any ( specialU ) U+0D4D U+200C + 'x' > index(specialU,1) U+0D4D
+
+any (consonantU) U+0D4D U+0D30 + 'X' > index(consonantU,1) U+0D4D U+0D30 U+0D4D
+any (specialU) U+0D4D U+0D30 + 'X' > index(specialU,1) U+0D4D U+0D30 U+0D4D
+
+any (consonantU) U+0D4D U+0D30 U+0D4D U+200C + 'x' > index(consonantU,1) U+0D4D U+0D30 U+0D4D
+any (specialU) U+0D4D U+0D30 U+0D4D U+200C + 'x' > index(specialU,1) U+0D4D U+0D30 U+0D4D
